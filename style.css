@@ -16,7 +16,6 @@ body {
 
 .cell {
     user-select: none;
-    border: 1px dotted lightgrey;
 }
 
 .snake-cell {

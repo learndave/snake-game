@@ -41,17 +41,19 @@ function setInitialSnake() {
                     [screenCenter, screenCenter],
                     [screenCenter + 1, screenCenter]
                 ]
-    console.log(snakeBody);
     for (let cell_coordinate of snakeBody) {
         let cell = document.querySelector(`.col${cell_coordinate[0]}.row${cell_coordinate[1]}`);
         cell.classList.add("snake-cell");
     }
+    
 }
 
 function nextFrame() {
-    if (TEMP_count > 0) {
+
+    
+    if (TEMP_COUNT > 0) {
+        TEMP_COUNT--;
         moveSnake();
-        TEMP_count++;
     }
 }
 
@@ -60,17 +62,47 @@ function moveSnake() {
     let headRow = snakeBody[0][1];
     if (snakeDirection == "LEFT") {
         moveSnakeLeft();
-    } else if (snakeDirection = "RIGHT") {
-
+    } else if (snakeDirection == "RIGHT") {
+        moveSnakeRight();
+    } else if (snakeDirection == "UP") {
+        moveSnakeUp();
+    } else {
+        moveSnakeDown();
     }
     drawNewHead();
     removeOldTail();
+
 
     function moveSnakeLeft() {
         if (headCol === 1) {
             snakeBody.unshift([SCREEN_RESOLUTION, headRow]);
         } else {
             snakeBody.unshift([headCol - 1, headRow]);
+        }
+    }
+
+    function moveSnakeRight() {
+        console.log(headCol);
+        if (headCol === SCREEN_RESOLUTION) {
+            snakeBody.unshift([1, headRow]);
+        } else {
+            snakeBody.unshift([headCol + 1, headRow]);
+        }
+    }
+
+    function moveSnakeUp() {
+        if (headRow == SCREEN_RESOLUTION) {
+            snakeBody.unshift([headCol, 1]);
+        } else {
+            snakeBody.unshift([headCol, headRow + 1]);
+        }
+    }
+
+    function moveSnakeDown() {
+        if (headRow == 1) {
+            snakeBody.unshift([headCol, SCREEN_RESOLUTION]);
+        } else {
+            snakeBody.unshift([headCol, headRow - 1]);
         }
     }
 
@@ -89,17 +121,17 @@ function moveSnake() {
 }
 
 /* GLOBAL OBJECTS */
-const SCREEN_RESOLUTION = 20;
+const SCREEN_RESOLUTION = 40;
 const box = document.querySelector(".box");
 const highScore = document.querySelector(".high.scores");
 const currentScore = document.querySelector(".current.scores");
-const FRAME_INTERVAL = 400; // in milliseconds (ms)
+const FRAME_INTERVAL = 100; // in milliseconds (ms)
 
 let snakeBody = []; // coordinates of snake body's cells, from head to tail
-let snakeDirection = "LEFT";
+let snakeDirection = "DOWN";
 let snakeLength = 2;
 let frame;
-let TEMP_count = 10;
+let TEMP_COUNT = 100;
 
 newGame();
 
