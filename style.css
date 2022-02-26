@@ -11,10 +11,12 @@ body {
     width: 500px;
     height: 500px;
     border: 1px solid grey;
+    gap: 3px;
 }
 
 .cell {
     user-select: none;
+    scale: 110%;
 }
 
 .snake-cell {
@@ -36,7 +38,7 @@ body {
 .food {
     background-color: blue;
     border-radius: 13px;
-    scale: 80%;
+    scale: 150%;
 }
 
 .food.snake-cell {

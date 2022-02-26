@@ -85,15 +85,7 @@ function moveSnake() {
     let headCol = snakeBody[0][0];
     let headRow = snakeBody[0][1];
     
-    if (snakeDirection == "LEFT") {
-        moveSnakeLeft();
-    } else if (snakeDirection == "RIGHT") {
-        moveSnakeRight();
-    } else if (snakeDirection == "UP") {
-        moveSnakeUp();
-    } else {
-        moveSnakeDown();
-    }
+    growSnake();
 
     newHead = JSON.stringify(snakeBody[0])
 
@@ -106,11 +98,26 @@ function moveSnake() {
     let isFoodEaten = false;
     drawNewHead();
     if (isFoodEaten) {
+        growSnake();
+        growSnake();
+        growSnake();
         giveFood();
     } else {
         removeOldTail();
     }
 
+    
+    function growSnake() {
+        if (snakeDirection == "LEFT") {
+            moveSnakeLeft();
+        } else if (snakeDirection == "RIGHT") {
+            moveSnakeRight();
+        } else if (snakeDirection == "UP") {
+            moveSnakeUp();
+        } else {
+            moveSnakeDown();
+        }
+    }
 
     function moveSnakeLeft() {
         if (headCol === 1) {
@@ -203,7 +210,7 @@ function gameOver() {
 
 /* GLOBAL OBJECTS */
 
-const SCREEN_RESOLUTION = 24;
+const SCREEN_RESOLUTION = 36;
 const box = document.querySelector(".box");
 const highScore = document.querySelector(".high.scores");
 const currentScore = document.querySelector(".current.scores");
