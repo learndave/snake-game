@@ -2,7 +2,6 @@ body {
     font-family: Helvetica, Arial, sans-serif;
     display: flex;
     flex-direction: column;
-    height: 100vh;
     align-items: center;
     gap: 40px;
 }
@@ -34,7 +33,16 @@ body {
     text-align: center;
 }
 
+.food {
+    background-color: blue;
+    border-radius: 13px;
+    scale: 80%;
+}
+
+.food.snake-cell {
+    background-color: grey;
+}
+
 /* DESKTOP */
 @media (min-width: 600px) {
-    
 }
